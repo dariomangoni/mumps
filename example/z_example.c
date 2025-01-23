@@ -22,8 +22,8 @@ int main(int argc, char ** argv)
   MUMPS_INT8 nnz = 2;
   MUMPS_INT irn[] = {1,2};
   MUMPS_INT jcn[] = {1,2};
-  double complex a[2];
-  double complex rhs[2];
+  _Dcomplex a[2];
+  _Dcomplex rhs[2];
 
 /* When compiling with -DINTSIZE64, MUMPS_INT is 64-bit but MPI
    ilp64 versions may still require standard int for C interface. */
@@ -34,8 +34,8 @@ int main(int argc, char ** argv)
   ierr = MPI_Init(&argc, &argv);
   ierr = MPI_Comm_rank(MPI_COMM_WORLD, &myid);
   /* Define A and rhs */
-  rhs[0]=1.0;rhs[1]=4.0;
-  a[0]=1.0;a[1]=2.0;
+  rhs[0]._Val[0]=1.0;rhs[1]._Val[0]=4.0;
+  a[0]._Val[0]=1.0;a[1]._Val[0]=2.0;
 
   /* Initialize a MUMPS instance. Use MPI_COMM_WORLD */
   id.comm_fortran=USE_COMM_WORLD;

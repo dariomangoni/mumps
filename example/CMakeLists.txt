@@ -27,6 +27,14 @@ function(precision_ex a)
     add_test(NAME ${a}_example_C COMMAND ${a}_example)
   endif()
 
+  if (${lang} STREQUAL "c")
+    set_property(TARGET ${a}_example_${lang} PROPERTY LANGUAGE C)
+    message(STATUS "Setting ${a}_example_${lang} to C")
+  else ()
+    set_property(TARGET ${a}_example_${lang} PROPERTY LANGUAGE CXX)
+    message(STATUS "Setting ${a}_example_${lang} to CXX")
+  endif()
+
 endfunction()
 
 if(MUMPS_d_FOUND)
